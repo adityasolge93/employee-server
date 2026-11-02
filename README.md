@@ -18,3 +18,4 @@ TBD
 ## Practice Problems
 ### Day-01
 1. Learn difference between REST APIs and https based APIs.
+2. Read and learn commonly used HTTP response code.
