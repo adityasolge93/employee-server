@@ -19,3 +19,6 @@ TBD
 ### Day-01
 1. Learn difference between REST APIs and https based APIs.
 2. Read and learn commonly used HTTP response code.
+
+### Day-02
+1. Comment out `app.use(express.json())` line from server.js and then invoke the API via postman.
