@@ -22,3 +22,4 @@ TBD
 
 ### Day-02
 1. Comment out `app.use(express.json())` line from server.js and then invoke the API via postman.
+2. Implement rest of the employee APIs.
