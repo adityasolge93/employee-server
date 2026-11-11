@@ -1,24 +1,24 @@
-const db = require('./inmemorydb');
-const { v4: uuidv4 } = require('uuid');
+const Employee =  require('../model/employee');
 
+// DAO: Data Access Object
 const employeeDao = {
-    create: (data) => {
-        const id = uuidv4();
+    create: async (data) => {
+        const newEmployee = new Employee(data);
 
-        const employee = {
-            id: id,
-            name: data.name,
-            email: data.email,
-            role: data.role
-        };
-
-        db.employees[id] = employee;
-
-        return id;
+        try {
+            await newEmployee.save();
+        } catch (error) {
+            console.log('Error while saving the employee data to database');
+            throw error;
+        }
     },
 
-    getEmployee: (id) => {
-        return db.employees[id] || null;
+    getEmployee: async (id) => {
+        return await Employee.findOne({ _id: id });
+    },
+
+    getEmployeeByEmail: async (email) => {
+        return await Employee.findOne({ email: email });
     },
 
     /**

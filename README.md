@@ -5,6 +5,12 @@ TBD
 1. Create a folder for the server.
 2. Run `npm init -y` command at the root of the folder to create empty node project.
 
+## Environment Variables
+```
+PORT = 5001
+MONGODB_CONNECTION_URL = mongodb://localhost:27017/coe-fsd-employee
+```
+
 ## Folder Structure
 1. src: Source code of the app, containing business logic or every code that you write for your app.
 2. src/controllers: Its the entry point of the REST/API request. It takes care of taking the request input, processing it, and sending the response.
@@ -23,3 +29,7 @@ TBD
 ### Day-02
 1. Comment out `app.use(express.json())` line from server.js and then invoke the API via postman.
 2. Implement rest of the employee APIs.
+
+### Day-03
+1. Implement rest of the DAO methods using MongoDB instead of in-memory database.
+2. Fix the failing authController code where it is not able to fetch the employee data by email even though the data exist. Hint: It has to do with the behaviour of Mongoose library (especially how it handles naming of the collection).
