@@ -9,8 +9,10 @@ const authController = {
             const employee = await employeeDao.getEmployeeByEmail(email);
             if (employee?.email === email && employee?.password === password) {
                 const data = {
+                    id: employee._id,
                     name: employee.name,
-                    email: employee.email
+                    email: employee.email,
+                    role: employee.role,
                 };
 
                 const token = jwt.sign(data, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });

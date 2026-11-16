@@ -32,4 +32,7 @@ MONGODB_CONNECTION_URL = mongodb://localhost:27017/coe-fsd-employee
 
 ### Day-03
 1. Implement rest of the DAO methods using MongoDB instead of in-memory database.
-2. Fix the failing authController code where it is not able to fetch the employee data by email even though the data exist. Hint: It has to do with the behaviour of Mongoose library (especially how it handles naming of the collection).
+2. [ASSIGNMENT] Fix the failing authController code where it is not able to fetch the employee data by email even though the data exist. Hint: It has to do with the behaviour of Mongoose library (especially how it handles naming of the collection).
+
+### Day-04
+1. [ASSIGNMENT] Implement password encryption using any library (for example, bcrypt). Hint: Encrypt/Hash password before storing it in the database as part of create employee API. Then during login, encrypt/hash the password provided by the user and compare it with the one stored in database.
