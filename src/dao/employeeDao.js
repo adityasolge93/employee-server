@@ -1,4 +1,5 @@
 const Employee =  require('../model/employee');
+const mongoose = require('mongoose');
 
 // DAO: Data Access Object
 const employeeDao = {
@@ -14,7 +15,7 @@ const employeeDao = {
     },
 
     getEmployee: async (id) => {
-        return await Employee.findOne({ _id: id });
+        return await Employee.findOne({ _id: mongoose.Types.ObjectId(id) });
     },
 
     getEmployeeByEmail: async (email) => {

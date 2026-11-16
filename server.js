@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 const authRoutes = require('./src/routes/authRoutes');
@@ -12,6 +13,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_URL)
 const app = express();
 
 app.use(express.json()); // Middleware to convert incoming JSON string into JS Object.
+app.use(cookieParser());
 
 app.use('/auth', authRoutes); // https://domain.com/auth/login
 app.use('/employee', employeeRoutes);
