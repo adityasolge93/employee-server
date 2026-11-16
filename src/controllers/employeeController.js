@@ -2,15 +2,15 @@ const employeeDao = require('../dao/employeeDao');
 
 const employeeController = {
     create: async (request, response) => {
-        const { name, email, role } = request.body;
+        const { name, email, role, password } = request.body;
 
-        if (!name || !email || !role) {
+        if (!name || !email || !role || !password) {
             return response.status(400).json({
-                message: 'Name, Email, Role are mandatory fields'
+                message: 'Name, Email, Role, Password are mandatory fields'
             });
         }
 
-        const id = employeeDao.create({ name, email, role });
+        const id = await employeeDao.create({ name, email, role, password });
 
         return response.status(200).json({
             message: `Employee data saved with employee id: ${id}`

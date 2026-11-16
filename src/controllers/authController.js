@@ -1,4 +1,5 @@
 const employeeDao = require('../dao/employeeDao');
+const jwt = require('jsonwebtoken');
 
 const authController = {
     login: async (request, response) => {
@@ -7,12 +8,22 @@ const authController = {
         try {
             const employee = await employeeDao.getEmployeeByEmail(email);
             if (employee?.email === email && employee?.password === password) {
+                const data = {
+                    name: employee.name,
+                    email: employee.email
+                };
+
+                const token = jwt.sign(data, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+                
+                response.cookie('jwtToken', token, {
+                    httpOnly: true, // It will be accessible on http requests
+                    secure: true, // It will be transmitted only over https methods (localhost is an exception)
+                    domain: 'localhost', // The domain which is allowed to access this cookie.
+                    path: '/' // Which all paths/routes can access this cookie in the above domain.
+                });
                 return response.status(200).json({
                     message: "User authenticated successfully",
-                    user: {
-                        name: employee.name,
-                        email: employee.email,
-                    }
+                    user: data
                 });
             } else {
                 return response.status(400).json({
