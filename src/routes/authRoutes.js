@@ -4,5 +4,6 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.post('/login', authController.login);
+router.get('/is-user-logged-in', authController.isUserLoggedIn);
 
 module.exports = router;
