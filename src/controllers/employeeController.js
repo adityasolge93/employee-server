@@ -31,6 +31,31 @@ const employeeController = {
         }
     },
 
+    getAllEmployees: async (request, response) => {
+        // Add proper validation on limit
+        const page  = parseInt(request.query.page) || 1;
+        const limit = parseInt(request.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        try {
+            const { employees, totalCount } = await employeeDao.getEmployees(skip, limit);
+            return response.status(200).json({
+                employees: employees,
+                pagination: {
+                    totalItems: totalCount,
+                    totalPages: Math.ceil(totalCount/limit),
+                    currentPage: page,
+                    itemsPerPage: limit
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            return response.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+    },
+
     // Implement other controller methods here
 }
 

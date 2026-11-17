@@ -25,8 +25,19 @@ const employeeDao = {
     /**
      * Rest of the methods are practice problems
      */
-    getEmployees: () => {
+    getEmployees: async (skip = 0, limit = 10) => {
+        // Practice Problem: Convert this query into native query.
+        const [employees, totalCount] = await Promise.all([
+            Employee.find({})
+            .sort({ name: -1 })
+            .skip(skip)
+            .limit(limit),
+            
+            // Practice Problem: Convert this query into native query.
+            Employee.countDocuments({}),
+        ]);
 
+        return { employees, totalCount };
     },
 
     searchEmployee: (searchString) => {

@@ -36,3 +36,8 @@ MONGODB_CONNECTION_URL = mongodb://localhost:27017/coe-fsd-employee
 
 ### Day-04
 1. [ASSIGNMENT] Implement password encryption using any library (for example, bcrypt). Hint: Encrypt/Hash password before storing it in the database as part of create employee API. Then during login, encrypt/hash the password provided by the user and compare it with the one stored in database.
+2. Convert the query in getEmployee method of DAO to native MongoDB instead of mongoose library.
+3. [ASSIGNMENT] Implement filter and sorting functionality in the employeeDao's getAllEmployee method.
+
+### Day-05
+1. [ASSIGNMENT] Implement logout API. Hint: You need to clear the cookie.
